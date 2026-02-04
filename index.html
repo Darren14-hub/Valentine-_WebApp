@@ -72,18 +72,18 @@
       width: 120px;
       cursor: pointer;
       transition: transform 0.2s;
+      text-align: center;
     }
 
     .gift-box:hover {
       transform: scale(1.05);
     }
 
-    .gift-content {
+    .gift-image, .gift-caption {
       display: none;
-      margin-top: 10px;
     }
 
-    .gift-content img {
+    .gift-image img {
       width: 100%;
       height: 120px;
       object-fit: cover;
@@ -91,7 +91,7 @@
       margin-bottom: 5px;
     }
 
-    .gift-box p {
+    .gift-caption {
       margin-top: 5px;
       font-size: 14px;
       color: #ffd6dc;
@@ -159,53 +159,65 @@
 
     <div class="gift-list">
 
-      <div class="gift-box" onclick="toggleGift('gift1')">
-        Gift 1 🌸
-        <div class="gift-content" id="gift1">
+      <div class="gift-box" onclick="revealGift('gift1')">
+        Gift 1 🌸<br>Click here
+        <div class="gift-image" id="gift1-image">
           <img src="Images/hydrangeas.jpg">
           <img src="Images/lilies.jpg">
         </div>
-        <p>A bouquet of blue hydrangeas and pink lilies all for youu! 💐</p>
+        <div class="gift-caption" id="gift1-caption">
+          A bouquet of blue hydrangeas and pink lilies all for youu! 💐
+        </div>
       </div>
 
-      <div class="gift-box" onclick="toggleGift('gift2')">
-        Gift 2 🍭
-        <div class="gift-content" id="gift2">
+      <div class="gift-box" onclick="revealGift('gift2')">
+        Gift 2 🍭<br>Click here
+        <div class="gift-image" id="gift2-image">
           <img src="Images/candy1.jpg">
         </div>
-        <p>Sweet ropes 😋</p>
+        <div class="gift-caption" id="gift2-caption">
+          Sweet ropes 😋
+        </div>
       </div>
 
-      <div class="gift-box" onclick="toggleGift('gift3')">
-        Gift 3 🍬
-        <div class="gift-content" id="gift3">
+      <div class="gift-box" onclick="revealGift('gift3')">
+        Gift 3 🍬<br>Click here
+        <div class="gift-image" id="gift3-image">
           <img src="Images/candy2.jpg">
         </div>
-        <p>Tootsie rolls!</p>
+        <div class="gift-caption" id="gift3-caption">
+          Tootsie rolls!
+        </div>
       </div>
 
-      <div class="gift-box" onclick="toggleGift('gift4')">
-        Gift 4 🍔
-        <div class="gift-content" id="gift4">
+      <div class="gift-box" onclick="revealGift('gift4')">
+        Gift 4 🍔<br>Click here
+        <div class="gift-image" id="gift4-image">
           <img src="Images/burgerking.jpg">
         </div>
-        <p>Burger King for you! 😎</p>
+        <div class="gift-caption" id="gift4-caption">
+          Burger King for you! 😎
+        </div>
       </div>
 
-      <div class="gift-box" onclick="toggleGift('gift5')">
-        Gift 5 ☕
-        <div class="gift-content" id="gift5">
+      <div class="gift-box" onclick="revealGift('gift5')">
+        Gift 5 ☕<br>Click here
+        <div class="gift-image" id="gift5-image">
           <img src="Images/starbucks.jpg">
         </div>
-        <p>A pink drink w light ice no inclusions and vanilla cold foam just for youu! ☕</p>
+        <div class="gift-caption" id="gift5-caption">
+          A pink drink w light ice no inclusions and vanilla cold foam just for youu! ☕
+        </div>
       </div>
 
-      <div class="gift-box" onclick="toggleGift('gift6')">
-        Gift 6 🐱
-        <div class="gift-content" id="gift6">
+      <div class="gift-box" onclick="revealGift('gift6')">
+        Gift 6 🐱<br>Click here
+        <div class="gift-image" id="gift6-image">
           <img src="Images/catselfie.jpg">
         </div>
-        <p>My favorite cat! 🥰</p>
+        <div class="gift-caption" id="gift6-caption">
+          My favorite cat! 🥰
+        </div>
       </div>
 
     </div>
@@ -249,13 +261,11 @@
     }
   }
 
-  function toggleGift(id) {
-    const gift = document.getElementById(id);
-    if (gift.style.display === "block") {
-      gift.style.display = "none";
-    } else {
-      gift.style.display = "block";
-    }
+  function revealGift(id) {
+    const imgDiv = document.getElementById(id + "-image");
+    const captionDiv = document.getElementById(id + "-caption");
+    imgDiv.style.display = "block";
+    captionDiv.style.display = "block";
   }
 </script>
 
