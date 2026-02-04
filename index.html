@@ -159,7 +159,7 @@
 
     <div class="gift-list">
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift1')">
         Gift 1 🌸
         <div class="gift-content" id="gift1">
           <img src="Images/hydrangeas.jpg">
@@ -168,7 +168,7 @@
         <p>A bouquet of blue hydrangeas and pink lilies all for youu! 💐</p>
       </div>
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift2')">
         Gift 2 🍭
         <div class="gift-content" id="gift2">
           <img src="Images/candy1.jpg">
@@ -176,7 +176,7 @@
         <p>Sweet ropes 😋</p>
       </div>
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift3')">
         Gift 3 🍬
         <div class="gift-content" id="gift3">
           <img src="Images/candy2.jpg">
@@ -184,7 +184,7 @@
         <p>Tootsie rolls!</p>
       </div>
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift4')">
         Gift 4 🍔
         <div class="gift-content" id="gift4">
           <img src="Images/burgerking.jpg">
@@ -192,7 +192,7 @@
         <p>Burger King for you! 😎</p>
       </div>
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift5')">
         Gift 5 ☕
         <div class="gift-content" id="gift5">
           <img src="Images/starbucks.jpg">
@@ -200,7 +200,7 @@
         <p>A pink drink w light ice no inclusions and vanilla cold foam just for youu! ☕</p>
       </div>
 
-      <div class="gift-box">
+      <div class="gift-box" onclick="toggleGift('gift6')">
         Gift 6 🐱
         <div class="gift-content" id="gift6">
           <img src="Images/catselfie.jpg">
@@ -246,6 +246,15 @@
       heart.style.top = Math.random() * window.innerHeight + "px";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 2000);
+    }
+  }
+
+  function toggleGift(id) {
+    const gift = document.getElementById(id);
+    if (gift.style.display === "block") {
+      gift.style.display = "none";
+    } else {
+      gift.style.display = "block";
     }
   }
 </script>
