@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be My Valentine 💘</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #001f4d;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .box {
+      background: #003366;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 500px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 0;
+      width: 140px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background: gray;
+      color: white;
+    }
+
+    .gift-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gift-box {
+      background: #004080;
+      border-radius: 15px;
+      padding: 10px;
+      width: 120px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .gift-content img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 5px;
+    }
+
+    .gift-box p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #ffd6dc;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-40px); opacity: 0; }
+    }
+
+    #tryAgain img {
+      width: 150px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        width: 90%;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- WELCOME -->
+<div class="box" id="welcome">
+  <video id="welcomeVideo" width="320" height="180" autoplay muted controls style="border-radius:15px;">
+    <source src="happyvalentine.mp4" type="video/mp4">
+  </video>
+
+  <h2>Happy Valentine's Day! 💖</h2>
+  <button onclick="startValentine()">Start 💌</button>
+</div>
+
+<!-- MAIN -->
+<div class="box" id="main" style="display:none;">
+  <h1 id="mainHeading">Will you be my Valentine? 💕</h1>
+
+  <div id="question">
+    <button id="yes" onclick="yes()">Yes 💖</button>
+    <button id="no" onclick="showTryAgain()">No 💔</button>
+  </div>
+
+  <!-- NO PAGE -->
+  <div id="tryAgain" style="display:none;">
+    <img src="heartbreak.jpg" alt="Heartbreak">
+    <p style="color:#ff6b81;">Aww you clicked no 😢 try again?</p>
+    <button onclick="retry()">Try again 🔄</button>
+  </div>
+
+  <!-- GIFTS -->
+  <div id="giftsSection" style="display:none;">
+    <h2>Here are the gifts I prepared for you since you said yes! 💖</h2>
+
+    <div class="gift-list">
+
+      <div class="gift-box">
+        Gift 1 🌸
+        <div class="gift-content" id="gift1">
+          <img src="hydrangeas.jpg">
+          <img src="lilies.jpg">
+        </div>
+        <p>A bouquet of blue hydrangeas and pink lilies all for youu! 💐</p>
+      </div>
+
+      <div class="gift-box">
+        Gift 2 🍭
+        <div class="gift-content" id="gift2">
+          <img src="candy1.jpg">
+        </div>
+        <p>Sweet ropes 😋</p>
+      </div>
+
+      <div class="gift-box">
+        Gift 3 🍬
+        <div class="gift-content" id="gift3">
+          <img src="candy2.jpg">
+        </div>
+        <p>Tootsie rolls!</p>
+      </div>
+
+      <div class="gift-box">
+        Gift 4 🍔
+        <div class="gift-content" id="gift4">
+          <img src="burgerking.jpg">
+        </div>
+        <p>Burger King for you! 😎</p>
+      </div>
+
+      <div class="gift-box">
+        Gift 5 ☕
+        <div class="gift-content" id="gift5">
+          <img src="starbucks.jpg">
+        </div>
+        <p>A pink drink w light ice no inclusions and vanilla cold foam just for youu! ☕</p>
+      </div>
+
+      <div class="gift-box">
+        Gift 6 🐱
+        <div class="gift-content" id="gift6">
+          <img src="catselfie.jpg">
+        </div>
+        <p>My favorite cat! 🥰</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function startValentine() {
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("main").style.display = "block";
+  }
+
+  function showTryAgain() {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("mainHeading").style.display = "none";
+    document.getElementById("tryAgain").style.display = "block";
+  }
+
+  function retry() {
+    document.getElementById("tryAgain").style.display = "none";
+    document.getElementById("question").style.display = "block";
+    document.getElementById("mainHeading").style.display = "block";
+  }
+
+  function yes() {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("tryAgain").style.display = "none";
+    document.getElementById("giftsSection").style.display = "block";
+    createHearts();
+  }
+
+  function createHearts() {
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+  }
+</script>
+
+</body>
+</html>
