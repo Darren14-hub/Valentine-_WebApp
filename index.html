@@ -12,7 +12,7 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
     background: linear-gradient(270deg, #ffb3c6, #ff6699, #cc0066);
     background-size: 600% 600%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 30s ease infinite;
     color: white;
     display: flex;
     justify-content: center;
@@ -38,9 +38,7 @@
     z-index: 1;
   }
 
-  h1, h2 {
-    margin-bottom: 20px;
-  }
+  h1, h2 { margin-bottom: 20px; }
 
   button {
     font-size: 18px;
@@ -53,9 +51,7 @@
     transition: transform 0.2s;
   }
 
-  button:hover {
-    transform: scale(1.1) rotate(-5deg);
-  }
+  button:hover { transform: scale(1.05); }
 
   #yes { background: #ff4d6d; color: white; }
   #no { background: gray; color: white; }
@@ -87,13 +83,13 @@
     padding: 10px;
     width: 120px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease, opacity 0.5s ease;
     text-align: center;
   }
 
-  .gift-box:hover { transform: scale(1.1) rotate(-5deg); }
+  .gift-box:hover { transform: scale(1.1); }
 
-  .gift-image, .gift-caption { display: none; }
+  .gift-image, .gift-caption { display: none; opacity: 0; transition: opacity 1s ease; }
 
   .gift-image img {
     width: 100%;
@@ -112,12 +108,13 @@
   .heart {
     position: absolute;
     font-size: 20px;
-    animation: float 4s linear infinite;
+    animation: float 8s linear infinite;
     z-index: 0;
+    opacity: 0.8;
   }
 
   @keyframes float {
-    0% { transform: translateY(0); opacity: 1; }
+    0% { transform: translateY(0); opacity: 0.8; }
     100% { transform: translateY(-600px); opacity: 0; }
   }
 
@@ -155,14 +152,12 @@
     <button id="no" onclick="showTryAgain()">No 💔</button>
   </div>
 
-  <!-- NO PAGE -->
   <div id="tryAgain" style="display:none;">
     <img src="Images/heartbreak.jpg" alt="Heartbreak">
     <p style="color:#ff6b81;">Aww you clicked no 😢 try again?</p>
     <button onclick="retry()">Try again 🔄</button>
   </div>
 
-  <!-- GIFTS -->
   <div id="giftsSection" style="display:none;">
     <h2>Here are the gifts I prepared for you since you said yes! 💖</h2>
 
@@ -174,7 +169,7 @@
           <img src="Images/lilies.jpg">
         </div>
         <div class="gift-caption" id="gift1-caption">
-          A bouquet of blue hydrangeas and pink lilies all for youu! 💐
+          A bouquet of blue hydrangeas and pink lilies just for you! 💐
         </div>
       </div>
 
@@ -208,7 +203,7 @@
           <img src="Images/starbucks.jpg">
         </div>
         <div class="gift-caption" id="gift5-caption">
-          A pink drink w light ice no inclusions and vanilla cold foam just for youu! ☕
+          A pink drink w light ice no inclusions and vanilla cold foam just for you! ☕
         </div>
       </div>
 
@@ -253,30 +248,24 @@ function createHearts() {
   for (let i = 0; i < 25; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerText = "💖";
+    const emojis = ["💖","🌸","🐱","🍬","🌟"];
+    heart.innerText = emojis[Math.floor(Math.random()*emojis.length)];
     heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.top = Math.random() * window.innerHeight + "px";
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 4000);
+    setTimeout(() => heart.remove(), 8000);
   }
 }
 
-// Floating hearts continuously
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "💖";
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.top = window.innerHeight + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 4000);
-}, 500);
+// Continuous floating hearts/emojis
+setInterval(createHearts, 800);
 
 function revealGift(id) {
   const imgDiv = document.getElementById(id + "-image");
   const captionDiv = document.getElementById(id + "-caption");
   imgDiv.style.display = "block";
   captionDiv.style.display = "block";
+  setTimeout(() => { imgDiv.style.opacity = 1; captionDiv.style.opacity = 1; }, 50);
 
   // Optional pop sound
   const audio = new Audio('media/pop.mp3'); 
@@ -306,3 +295,7 @@ updateCountdown();
 
 </body>
 </html>
+
+
+
+
