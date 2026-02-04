@@ -12,7 +12,7 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
     background: linear-gradient(270deg, #ffb3c6, #ff6699, #cc0066);
     background-size: 600% 600%;
-    animation: gradient 30s ease infinite;
+    animation: gradient 60s ease infinite;
     color: white;
     display: flex;
     justify-content: center;
@@ -48,7 +48,7 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease;
   }
 
   button:hover { transform: scale(1.05); }
@@ -60,12 +60,12 @@
     font-size: 18px;
     margin-bottom: 20px;
     color: #ffb3c6;
-    animation: pulse 1.5s infinite;
+    animation: pulse 2s infinite;
   }
 
   @keyframes pulse {
     0% {text-shadow: 0 0 5px #ffb3c6;}
-    50% {text-shadow: 0 0 20px #ff66aa;}
+    50% {text-shadow: 0 0 15px #ff66aa;}
     100% {text-shadow: 0 0 5px #ffb3c6;}
   }
 
@@ -87,7 +87,7 @@
     text-align: center;
   }
 
-  .gift-box:hover { transform: scale(1.1); }
+  .gift-box:hover { transform: scale(1.05); }
 
   .gift-image, .gift-caption { display: none; opacity: 0; transition: opacity 1s ease; }
 
@@ -108,7 +108,7 @@
   .heart {
     position: absolute;
     font-size: 20px;
-    animation: float 8s linear infinite;
+    animation: float 12s linear infinite;
     z-index: 0;
     opacity: 0.8;
   }
@@ -253,12 +253,10 @@ function createHearts() {
     heart.style.left = Math.random() * window.innerWidth + "px";
     heart.style.top = Math.random() * window.innerHeight + "px";
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
+    setTimeout(() => heart.remove(), 12000);
   }
 }
-
-// Continuous floating hearts/emojis
-setInterval(createHearts, 800);
+setInterval(createHearts, 1200);
 
 function revealGift(id) {
   const imgDiv = document.getElementById(id + "-image");
@@ -267,12 +265,10 @@ function revealGift(id) {
   captionDiv.style.display = "block";
   setTimeout(() => { imgDiv.style.opacity = 1; captionDiv.style.opacity = 1; }, 50);
 
-  // Optional pop sound
   const audio = new Audio('media/pop.mp3'); 
   audio.play();
 }
 
-// Countdown to next Valentine's Day
 function updateCountdown() {
   const now = new Date();
   let year = now.getFullYear();
@@ -288,14 +284,9 @@ function updateCountdown() {
   document.getElementById("countdown").innerText =
     `Countdown to Valentine's Day: ${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
 
 </body>
 </html>
-
-
-
-
