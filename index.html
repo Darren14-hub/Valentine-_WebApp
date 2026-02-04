@@ -57,6 +57,12 @@
       color: white;
     }
 
+    #countdown {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #ffb3c6;
+    }
+
     .gift-list {
       display: flex;
       flex-wrap: wrap;
@@ -139,6 +145,10 @@
 
 <!-- MAIN -->
 <div class="box" id="main" style="display:none;">
+
+  <!-- Countdown -->
+  <div id="countdown"></div>
+
   <h1 id="mainHeading">Will you be my Valentine? 💕</h1>
 
   <div id="question">
@@ -244,6 +254,7 @@
 
   function yes() {
     document.getElementById("question").style.display = "none";
+    document.getElementById("mainHeading").style.display = "none"; // Hides the heading
     document.getElementById("tryAgain").style.display = "none";
     document.getElementById("giftsSection").style.display = "block";
     createHearts();
@@ -267,6 +278,26 @@
     imgDiv.style.display = "block";
     captionDiv.style.display = "block";
   }
+
+  // Countdown to next Valentine's Day
+  function updateCountdown() {
+    const now = new Date();
+    let year = now.getFullYear();
+    const valentines = new Date(`February 14, ${year} 00:00:00`);
+    if (now > valentines) valentines.setFullYear(year + 1);
+
+    const diff = valentines - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerText =
+      `Countdown to Valentine's Day: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>
 
 </body>
