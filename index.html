@@ -146,7 +146,7 @@
 <div class="box" id="main" style="display:none;">
   <div id="countdown"></div>
   <h1 id="mainHeading">Will you be my Valentine? 💕</h1>
-  <p style="margin-top:-10px; color:#ffd6dc; font-size:16px;">
+  <p id="friendNote" style="margin-top:-10px; color:#ffd6dc; font-size:16px;">
     we’re friends… just thought I’d ask
   </p>
 
@@ -230,6 +230,7 @@ function startValentine() {
 function showTryAgain() {
   document.getElementById("question").style.display = "none";
   document.getElementById("mainHeading").style.display = "none";
+  document.getElementById("friendNote").style.display = "none";
   document.getElementById("tryAgain").style.display = "block";
 }
 
@@ -237,11 +238,13 @@ function retry() {
   document.getElementById("tryAgain").style.display = "none";
   document.getElementById("question").style.display = "block";
   document.getElementById("mainHeading").style.display = "block";
+  document.getElementById("friendNote").style.display = "block";
 }
 
 function yes() {
   document.getElementById("question").style.display = "none";
   document.getElementById("mainHeading").style.display = "none";
+  document.getElementById("friendNote").style.display = "none";
   document.getElementById("tryAgain").style.display = "none";
   document.getElementById("giftsSection").style.display = "block";
   createHearts();
@@ -292,4 +295,5 @@ updateCountdown();
 </script>
 
 </body>
+  
 </html>
